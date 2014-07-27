@@ -30,7 +30,7 @@ In our example, ClientBIT is also prepared to evaluate the strings received from
 H. Silva, A. Lourenço, A. Fred, R. Martins. BIT: Biosignal Igniter Toolkit. Computer Methods and Programs in Biomedicine, Volume 115, 2014, Pages 20-32.
 
 
-M. Lucas da Silva, D. Gonçalves, H. Silva. User-tuned Content Customization for Children with Autism Spectrum Disorders. Procedia Computer Science, Volume 27, 2014, Pages 441-448.
+M. Lucas da Silva, D. Gonçalves, T. Guerreiro, H. Silva. A Web-Based Application to Address Individual Interests of Children with Autism Spectrum Disorders. Procedia Computer Science, Volume 14, 2012, Pages 20-27.
 
 ## Screenshots
 
