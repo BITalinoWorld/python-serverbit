@@ -1,0 +1,89 @@
+<html>
+    <script language="javascript" type="text/javascript" src="jquery.js"></script> 
+    <script language="javascript" type="text/javascript" src="jquery.flot.js"></script> 
+    <script type="text/javascript">
+        // Establish a connection to the ServerBIT
+        var ws = new WebSocket("ws://localhost:9001 ");
+
+        // Define the boolean data type as used in Python
+        var True = true
+        var False = false
+
+        ws.onopen = function() {
+        };
+
+        // Process the responses sent by the ServerBIT
+        ws.onmessage = function (e) {
+            msg=e.data.toString()
+
+            // Log the response onto the HTML body
+            if (msg.indexOf("read")<0) {
+                $("body").html($("body").html()+msg+"<br/>")
+            }
+
+            // Evaluate the respose
+            eval(e.data)
+        };
+
+        // Detect when the page is unloaded or close
+        window.onbeforeunload = function() {
+            // Request ServerBIT to close the connection to BITalino
+            ws.send("device.close()")
+
+            // Request ServerBIT to shut down
+            ws.send("server.shutdown()");
+
+            ws.onclose = function () {};
+            ws.close()
+        };
+
+        // Process the server messages related with the server
+        server=new function() {
+            this.connected=function(msg) {
+                // When a connection to ServerBIT is established, open the connection to the device
+                ws.send("server.BITalino('/dev/tty.bitalino-DevB')")
+            }
+            this.BITalino=function(msg) {
+                if (msg) {
+                     // When a connection to the device is established start the acquisition
+                     ws.send("device.start(1000, [3])")
+                }
+            }
+        }
+
+        // Process the server messages related with the device
+        device=new function() {
+            this.start=function(msg) {
+                // When the device starts the acquisition read samples
+                ws.send("device.read(250)[:,-1]")
+            }
+            this.read=function(msg) {
+                // When a set of samples is read request more samples
+                ws.send("device.read(250)[:,-1]")
+                
+                var d1 = [];
+                for (var i = 0; i < msg.length; i += 1)
+                    d1.push([i, msg[i]]);
+                
+                $.plot($("#placeholder"), [ d1 ], {yaxis: {
+              min:0, max: 1024}});
+            }
+            this.version=function(msg) {}
+            this.stop=function(msg) {}
+            this.close=function(msg) {}
+        }
+
+        // Process the server messages related with exceptions
+        sys=new function() {
+            this.exception=function(msg) {
+                alert(msg.toString());
+            }
+        }
+        
+        
+    </script>
+    <body>
+        <div><h1>BITalinoWS</h1></div>
+	<div id="placeholder" style="width:600px;height:300px;"></div> 
+    </body>
+</html>
