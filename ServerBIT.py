@@ -40,7 +40,7 @@ def tostring(data):
     """
     dtype=type(data).__name__
     if dtype=='ndarray':
-        if pylab.shape(data)!=(): data=list(data)
+        if pylab.shape(data)!=(): data=data.tolist() # data=list(data)
         else: data='"'+data.tostring()+'"'
     elif dtype=='dict' or dtype=='tuple':
         try: data=json.dumps(data)
