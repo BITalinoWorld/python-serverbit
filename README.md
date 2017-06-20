@@ -15,6 +15,7 @@ In our example, ClientBIT is also prepared to evaluate the strings received from
 
 - Python 2.7 or above must be installed;
 - BITalino API and dependencies installed;
+- PySerial module installed;
 - Twisted matrix module installed.
 
 ## Testing ServerBIT
