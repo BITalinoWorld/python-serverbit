@@ -1,0 +1,7 @@
+{
+	"device": "WINDOWS - XX:XX:XX:XX:XX:XX | MAC - /dev/tty.BITalino-XX-XX-DevB",
+	"channels":[1, 2, 3, 4, 5, 6],
+	"sampling_rate":1000,
+	"labels":["nSeq", "I1", "I2", "O1", "O2","A1","A2","A3","A4","A5","A6"],
+	"port":9001
+}	

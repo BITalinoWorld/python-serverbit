@@ -1,0 +1,32 @@
+<html>
+    <script language="javascript" type="text/javascript" src="jquery.js"></script> 
+    <script language="javascript" type="text/javascript" src="jquery.flot.js"></script> 
+    <script type="text/javascript">
+        // Establish a connection to the ServerBIT
+        var ws = new WebSocket("ws://localhost:9001/");
+
+        ws.onopen = function() {
+        };
+
+        // Process the responses sent by the ServerBIT
+        ws.onmessage = function (e) {
+            data = JSON.parse(e.data)
+            var d1 = [];
+            ch = 'A1'
+            for (var i = 0; i < data[ch].length; i += 1)
+                d1.push([i, data[ch][i]]);
+            $.plot($("#placeholder"), [ d1 ], {yaxis: {min:0, max: 1024}});
+        };
+
+        // Detect when the page is unloaded or close
+        window.onbeforeunload = function() {
+            ws.onclose = function () {};
+            ws.close()
+        };        
+        
+    </script>
+    <body>
+        <div><h1>BITalinoWS</h1></div>
+	<div id="placeholder" style="width:600px;height:300px;"></div> 
+    </body>
+</html>
