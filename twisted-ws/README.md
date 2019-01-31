@@ -35,6 +35,6 @@ M. Lucas da Silva, D. Gonçalves, T. Guerreiro, H. Silva. A Web-Based Applicatio
 
 ## Screenshots
 
-![ServerBIT](https://raw.githubusercontent.com/BITalinoWorld/python-serverbit/master/ServerBIT.png)
-![ClientBIT](https://raw.githubusercontent.com/BITalinoWorld/python-serverbit/master/ClientBIT.png)
+![ServerBIT](https://raw.githubusercontent.com/BITalinoWorld/python-serverbit/master/twisted-ws/ServerBIT.png)
+![ClientBIT](https://raw.githubusercontent.com/BITalinoWorld/python-serverbit/master/twisted-ws/ClientBIT.png)
 
